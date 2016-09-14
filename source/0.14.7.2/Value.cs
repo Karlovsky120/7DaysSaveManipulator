@@ -10,6 +10,8 @@ namespace SevenDaysSaveManipulator.GameData
     public class Value<T>
     {
         private T value;
+
+        [NonSerialized]
         private List<IValueListener<T>> listeners = new List<IValueListener<T>>();
 
         public Value(T value)
@@ -19,6 +21,12 @@ namespace SevenDaysSaveManipulator.GameData
 
         public T Get()
         {
+            return value;
+        }
+
+        public T GetRemoveListeners()
+        {
+            listeners = null;
             return value;
         }
 

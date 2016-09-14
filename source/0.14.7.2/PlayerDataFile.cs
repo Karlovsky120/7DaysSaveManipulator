@@ -100,7 +100,7 @@ namespace SevenDaysSaveManipulator.GameData
             formatter.Serialize(stream, this);
             stream.Close();
 
-            stream = new FileStream("PlayerDataFile", FileMode.Open, FileAccess.Read, FileShare.None);//File.Open("PlayerDataFile", FileMode.Open);          
+            stream = new FileStream("PlayerDataFile", FileMode.Open, FileAccess.Read, FileShare.None);       
             PlayerDataFile clone = (PlayerDataFile)formatter.Deserialize(stream);
             stream.Close();
 
