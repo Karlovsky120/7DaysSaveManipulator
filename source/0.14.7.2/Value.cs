@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SevenDaysSaveManipulator.GameData
 {
@@ -21,12 +18,6 @@ namespace SevenDaysSaveManipulator.GameData
 
         public T Get()
         {
-            return value;
-        }
-
-        public T GetRemoveListeners()
-        {
-            listeners = null;
             return value;
         }
 
