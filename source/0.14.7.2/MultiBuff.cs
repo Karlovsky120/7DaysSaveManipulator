@@ -9,14 +9,19 @@ namespace SevenDaysSaveManipulator.GameData
     {
         //num = 2
         public Value<int> multiBuffVersion;
+
         //id
         public string multiBuffClassId;
+
         //JJ
         public List<MultiBuffAction> multiBuffActionList;
+
         //SJ
         public List<MultiBuffAction> multiBuffActionList2;
+
         //OJ
         public List<MultiBuffPrefabAttachmentDescriptor> multiBuffPrefabAttachmentDescriptorList;
+
         //WJ
         public Dictionary<string, float> buffCounterValues;
 

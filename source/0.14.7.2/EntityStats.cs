@@ -9,12 +9,16 @@ namespace SevenDaysSaveManipulator.GameData
     {
         //num = 6
         public Value<int> statsVersion;
+
         //L
         public EnumBuffCategoryFlags buffCategoryFlags;
+
         //D
         public int[] immunity = new int[13];
+
         //idTable
         public Dictionary<ushort, StatModifier> idTable;
+
         public Stat health;
         public Stat stamina;
         public Stat sickness;
@@ -24,10 +28,13 @@ namespace SevenDaysSaveManipulator.GameData
         public Stat coreTemp;
         public Stat food;
         public Stat water;
+
         //JJ
         public Value<float> waterLevel;
+
         //E
         public List<Buff> buffList;
+
         //W
         public Dictionary<string, MultiBuffVariable> multiBuffVariableDictionary;
 
@@ -68,7 +75,7 @@ namespace SevenDaysSaveManipulator.GameData
             water.Read(reader, idTable);
 
             waterLevel = new Value<float>(reader.ReadSingle());
-            
+
             //num4
             int buffListCount = reader.ReadInt32();
             buffList = new List<Buff>();
@@ -91,7 +98,7 @@ namespace SevenDaysSaveManipulator.GameData
         public void Write(BinaryWriter writer)
         {
             writer.Write(statsVersion.Get());
-            writer.Write((int) buffCategoryFlags);
+            writer.Write((int)buffCategoryFlags);
             writer.Write(immunity.Length);
             for (int i = 0; i < immunity.Length; i++)
             {

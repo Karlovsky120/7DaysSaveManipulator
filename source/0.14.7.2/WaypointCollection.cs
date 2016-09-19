@@ -9,6 +9,7 @@ namespace SevenDaysSaveManipulator.GameData
     {
         //notSaved = 1
         public Value<byte> waypointCollectionVersion;
+
         //List
         public List<Waypoint> waypointList;
 
@@ -16,7 +17,7 @@ namespace SevenDaysSaveManipulator.GameData
         {
             waypointCollectionVersion = new Value<byte>(reader.ReadByte());
             //num
-            int listCount = (int) reader.ReadInt16();
+            int listCount = (int)reader.ReadInt16();
             waypointList = new List<Waypoint>();
             for (int i = 0; i < listCount; i++)
             {
@@ -29,7 +30,7 @@ namespace SevenDaysSaveManipulator.GameData
         public void Write(BinaryWriter writer)
         {
             writer.Write(waypointCollectionVersion.Get());
-            writer.Write((ushort) waypointList.Count);
+            writer.Write((ushort)waypointList.Count);
             for (int i = 0; i < waypointList.Count; i++)
             {
                 waypointList[i].Write(writer);

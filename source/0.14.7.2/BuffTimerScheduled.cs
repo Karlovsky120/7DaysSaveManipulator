@@ -8,12 +8,16 @@ namespace SevenDaysSaveManipulator.GameData
     {
         //num = 3
         public Value<int> buffTimerScheduledVersion;
+
         //G
         public Value<ulong> unknownG;
+
         //O
         public Value<int> duration;
+
         //E
         public Value<float> unknownE;
+
         //W
         public Value<int> elapsed;
 

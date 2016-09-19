@@ -8,26 +8,37 @@ namespace SevenDaysSaveManipulator.GameData
     {
         //num = 3
         public static Value<int> multiBuffActionVersion;
+
         //Q
         public EnumCommand command;
+
         //C
         public Value<float> unknownC;
+
         //G
         public EnumBuffCategoryFlags categoryFlags;
+
         //V
         public Value<int> unknownV;
+
         //O
         public Value<string> unknownO;
+
         //W
         public Value<string> unknownW;
+
         //E
         public Value<string> context;
+
         //J
         public BuffTimer unknownJ;
+
         //S
         public BuffTimer unknownS;
+
         //F
         public Value<bool> unknownF;
+
         //I
         public Value<bool> unknownI;
 
@@ -52,9 +63,9 @@ namespace SevenDaysSaveManipulator.GameData
             multiBuffActionVersion = new Value<int>(reader.ReadInt32());
 
             MultiBuffAction multiBuffAction = new MultiBuffAction();
-            multiBuffAction.command = (EnumCommand) reader.ReadByte();
+            multiBuffAction.command = (EnumCommand)reader.ReadByte();
             multiBuffAction.unknownC = new Value<float>(reader.ReadSingle());
-            multiBuffAction.categoryFlags = (EnumBuffCategoryFlags) reader.ReadInt32();
+            multiBuffAction.categoryFlags = (EnumBuffCategoryFlags)reader.ReadInt32();
             multiBuffAction.unknownV = new Value<int>(reader.ReadInt32());
             multiBuffAction.unknownO = new Value<string>(reader.ReadString());
             multiBuffAction.unknownW = new Value<string>(reader.ReadString());
@@ -72,9 +83,9 @@ namespace SevenDaysSaveManipulator.GameData
         public void Write(BinaryWriter writer)
         {
             writer.Write(multiBuffActionVersion.Get());
-            writer.Write((byte) command);
+            writer.Write((byte)command);
             writer.Write(unknownC.Get());
-            writer.Write((int) categoryFlags);
+            writer.Write((int)categoryFlags);
             writer.Write(unknownV.Get());
             writer.Write(unknownO.Get());
             writer.Write(unknownW.Get());

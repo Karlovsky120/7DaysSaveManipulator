@@ -17,20 +17,28 @@ namespace SevenDaysSaveManipulator.GameData
     {
         //ID
         public string id;
+
         //CurrentQuestVersion
         public Value<byte> currentQuestVersion;
+
         //CurrentFileVersion
         public Value<byte> currentFileVersion;
+
         //OwnerJournal
         public QuestJournal ownerJournal;
+
         //CurrentState
         public Value<QuestState> currentState;
+
         //Q
         public Value<bool> isTracked;
+
         //FinishTime
         public Value<ulong> finishTime;
+
         //Objectives
         public List<BaseObjective> objectives = new List<BaseObjective>();
+
         //DataVariables
         public Dictionary<string, string> dataVariables = new Dictionary<string, string>();
 

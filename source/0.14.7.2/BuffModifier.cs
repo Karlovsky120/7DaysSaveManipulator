@@ -9,21 +9,26 @@ namespace SevenDaysSaveManipulator.GameData
     {
         //version = 1
         public static Value<int> buffModifierVersion;
+
         //num
         public static Value<int> buffModifierClassId;
+
         //C
         public static Dictionary<EnumBuffModifierClassId, Type> dictionary;
+
         //S
         public EnumBuffModifierClassId enumId;//S
+
         //Q
         public Value<int> UID;
+
         //J
         public Buff buff;
 
         public static BuffModifier Read(BinaryReader reader)
         {
             buffModifierVersion = new Value<int>(reader.ReadInt32());
-            buffModifierClassId = new Value<int>((int) reader.ReadByte());
+            buffModifierClassId = new Value<int>((int)reader.ReadByte());
 
             Type type;
             dictionary.TryGetValue((EnumBuffModifierClassId)buffModifierClassId.Get(), out type);

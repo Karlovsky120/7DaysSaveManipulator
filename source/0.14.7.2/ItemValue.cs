@@ -9,30 +9,38 @@ namespace SevenDaysSaveManipulator.GameData
     {
         //b = 3
         public Value<byte> itemValueVersion;
+
         //type
         public Value<int> type;
+
         //UseTimes
         public Value<int> useTimes;
+
         //Quality
         public Value<int> quality;
+
         //Meta
         public Value<int> meta;
+
         //Parts
         public ItemValue[] parts = new ItemValue[0];
+
         //Attachments
         public List<ItemValue> attachments = new List<ItemValue>();
+
         //Activated
         public Value<bool> activated;
+
         //SelectedAmmoTypeIndex
         public Value<byte> selectedAmmoTypeIndex;
 
         public void Read(BinaryReader reader)
         {
             itemValueVersion = new Value<byte>(reader.ReadByte());
-            type = new Value<int>((int) reader.ReadUInt16());
-            useTimes = new Value<int>((int) reader.ReadUInt16());
-            quality = new Value<int>((int) reader.ReadUInt16());
-            meta = new Value<int>((int) reader.ReadInt16());
+            type = new Value<int>((int)reader.ReadUInt16());
+            useTimes = new Value<int>((int)reader.ReadUInt16());
+            quality = new Value<int>((int)reader.ReadUInt16());
+            meta = new Value<int>((int)reader.ReadInt16());
 
             //b2
             byte partNumber = reader.ReadByte();
@@ -40,14 +48,13 @@ namespace SevenDaysSaveManipulator.GameData
 
             if (partNumber != 0)
             {
-                for (int i = 0; i < (int) partNumber; i++)
+                for (int i = 0; i < (int)partNumber; i++)
                 {
                     if (reader.ReadBoolean())
                     {
                         parts[i] = new ItemValue();
                         parts[i].Read(reader);
                     }
-
                     else
                     {
                         parts[i] = null;
@@ -60,7 +67,7 @@ namespace SevenDaysSaveManipulator.GameData
             if (hasAttachments)
             {
                 //int
-                int attachmentsLength = (int) reader.ReadByte();
+                int attachmentsLength = (int)reader.ReadByte();
                 for (int j = 0; j < attachmentsLength; j++)
                 {
                     attachments.Add(new ItemValue());
@@ -75,10 +82,10 @@ namespace SevenDaysSaveManipulator.GameData
         public void Write(BinaryWriter writer)
         {
             writer.Write(itemValueVersion.Get());
-            writer.Write((ushort) type.Get());
-            writer.Write((ushort) useTimes.Get());
-            writer.Write((ushort) quality.Get());
-            writer.Write((ushort) meta.Get());
+            writer.Write((ushort)type.Get());
+            writer.Write((ushort)useTimes.Get());
+            writer.Write((ushort)quality.Get());
+            writer.Write((ushort)meta.Get());
             int num = 0;
             for (int i = 0; i < parts.Length; i++)
             {
@@ -87,7 +94,7 @@ namespace SevenDaysSaveManipulator.GameData
                     num = i + 1;
                 }
             }
-            writer.Write((byte) num);
+            writer.Write((byte)num);
 
             for (int j = 0; j < num; j++)
             {
@@ -109,7 +116,7 @@ namespace SevenDaysSaveManipulator.GameData
                 for (int k = 0; k < attachments.Count; k++)
                 {
                     attachments[k].Write(writer);
-                }              
+                }
             }
 
             writer.Write(activated.Get());

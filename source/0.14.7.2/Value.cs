@@ -9,7 +9,7 @@ namespace SevenDaysSaveManipulator.GameData
         private T value;
 
         [NonSerialized]
-        private List<IValueListener<T>> listeners = new List<IValueListener<T>>();
+        private List<WeakReference<IValueListener<T>>> listeners = new List<WeakReference<IValueListener<T>>>();
 
         public Value(T value)
         {
@@ -27,21 +27,25 @@ namespace SevenDaysSaveManipulator.GameData
             {
                 this.value = value;
 
-                foreach (IValueListener<T> listener in listeners)
+                foreach (WeakReference<IValueListener<T>> reference in listeners)
                 {
-                    listener.ValueUpdated(this);
+                    IValueListener<T> listener;
+                    if (reference.TryGetTarget(out listener))
+                    {
+                        listener.ValueUpdated(this);
+                    }
                 }
             }
         }
 
-        public void AddListener(IValueListener<T> listener)
+        public override string ToString()
         {
-            listeners.Add(listener);
+            return value.ToString();
         }
 
-        public void RemoveListener(IValueListener<T> listener)
+        public void AddListener(IValueListener<T> listener)
         {
-            listeners.Remove(listener);
+            listeners.Add(new WeakReference<IValueListener<T>>(listener));
         }
     }
 }

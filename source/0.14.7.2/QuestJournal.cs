@@ -9,6 +9,7 @@ namespace SevenDaysSaveManipulator.GameData
     {
         //notSaved = 1
         public Value<byte> questJournalVersion;
+
         //quests
         public List<Quest> quests = new List<Quest>();
 

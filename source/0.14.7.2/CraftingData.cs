@@ -12,7 +12,7 @@ namespace SevenDaysSaveManipulator.GameData
         public void Read(BinaryReader reader)
         {
             //num
-            int recipeQueueItemsLength = (int) reader.ReadByte();
+            int recipeQueueItemsLength = (int)reader.ReadByte();
             recipeQueueItems = new RecipeQueueItem[recipeQueueItemsLength];
             for (int i = 0; i < recipeQueueItemsLength; i++)
             {
@@ -24,7 +24,7 @@ namespace SevenDaysSaveManipulator.GameData
         public void Write(BinaryWriter writer)
         {
             int num = recipeQueueItems.Length;
-            writer.Write((byte) num);
+            writer.Write((byte)num);
             for (int i = 0; i < num; i++)
             {
                 if (recipeQueueItems[i] == null)

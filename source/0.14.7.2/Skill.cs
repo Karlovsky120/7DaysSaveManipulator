@@ -8,14 +8,19 @@ namespace SevenDaysSaveManipulator.GameData
     {
         //num = 2
         public Value<int> skillVersion;
+
         //id
         public Value<int> id;
+
         //expToNextLevel
         public Value<int> expToNextLevel;
+
         //isLocked
         public Value<bool> isLocked;
+
         //level
         public Value<int> level;
+
         //parent
         public Skills parent;
 

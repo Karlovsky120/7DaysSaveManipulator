@@ -8,12 +8,16 @@ namespace SevenDaysSaveManipulator.GameData
     {
         //notSaved = 1
         public static Value<int> multiBuffVariableVersion;
+
         //Q
         public Value<float> unknownQ;
+
         //J
         public Value<float> unknownJ;
+
         //S
         public Value<float> unknownS;
+
         //C
         public Value<float> unknownC;
 

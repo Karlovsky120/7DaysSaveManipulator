@@ -9,31 +9,38 @@ namespace SevenDaysSaveManipulator.GameData
     {
         //version = 6
         public static Value<int> buffVersion;
+
         //num
         public static Value<int> buffClassId;
+
         //D
         public static Dictionary<EnumBuffClassId, Type> dictionary;
+
         //E
         public BuffTimer timer;
+
         //C
         public BuffDescriptor descriptor;
+
         //G
         public Value<bool> isOverriden;
+
         //O
         public List<StatModifier> statModifierList;
+
         //W
         public List<BuffModifier> buffModifierList;
+
         //RandomLetter
         public Value<int> instigatorId;
 
-
         public static Buff Read(BinaryReader reader, Dictionary<ushort, StatModifier> idTable)
         {
-            buffVersion = new Value<int>((int) reader.ReadUInt16());
-            buffClassId = new Value<int>((int) reader.ReadByte());
+            buffVersion = new Value<int>((int)reader.ReadUInt16());
+            buffClassId = new Value<int>((int)reader.ReadByte());
 
             Type type;
-            dictionary.TryGetValue((EnumBuffClassId) buffClassId.Get(), out type);
+            dictionary.TryGetValue((EnumBuffClassId)buffClassId.Get(), out type);
 
             Buff buff = Activator.CreateInstance(type, null) as Buff;
             buff.Read(reader, buffVersion.Get(), idTable);
@@ -69,8 +76,8 @@ namespace SevenDaysSaveManipulator.GameData
 
         public virtual void Write(BinaryWriter writer)
         {
-            writer.Write((ushort) buffVersion.Get());
-            writer.Write((byte) buffClassId.Get());
+            writer.Write((ushort)buffVersion.Get());
+            writer.Write((byte)buffClassId.Get());
             timer.Write(writer);
             descriptor.Write(writer);
             writer.Write(isOverriden.Get());
@@ -99,7 +106,7 @@ namespace SevenDaysSaveManipulator.GameData
         static Buff()
         {
             dictionary = new Dictionary<EnumBuffClassId, Type>();
-            RegisterClass(EnumBuffClassId.MultiBuff, typeof (MultiBuff));
+            RegisterClass(EnumBuffClassId.MultiBuff, typeof(MultiBuff));
         }
     }
 }

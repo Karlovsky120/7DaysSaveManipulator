@@ -9,18 +9,21 @@ namespace SevenDaysSaveManipulator.GameData
     {
         //num = 2
         public static Value<int> buffDescriptorVersion;
+
         //CategoryFlags
         public EnumBuffCategoryFlags categoryFlags;
+
         //NotificationClass
         public string notificationClass;
+
         //Overrides
-        public HashSet<string> overrides; 
+        public HashSet<string> overrides;
 
         public static BuffDescriptor Read(BinaryReader reader)
         {
             buffDescriptorVersion = new Value<int>(reader.ReadInt32());
             BuffDescriptor buffDescriptor = new BuffDescriptor();
-            buffDescriptor.categoryFlags = (EnumBuffCategoryFlags) reader.ReadInt32();
+            buffDescriptor.categoryFlags = (EnumBuffCategoryFlags)reader.ReadInt32();
 
             buffDescriptor.notificationClass = reader.ReadString();
 
@@ -30,7 +33,6 @@ namespace SevenDaysSaveManipulator.GameData
             {
                 buffDescriptor.overrides.Add(reader.ReadString());
             }
-           
 
             return buffDescriptor;
         }

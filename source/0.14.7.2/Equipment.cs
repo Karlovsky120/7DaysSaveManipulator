@@ -8,6 +8,7 @@ namespace SevenDaysSaveManipulator.GameData
     {
         //notSaved = 1
         public static Value<byte> equipmentVersion;
+
         //S
         public ItemValue[] slots = new ItemValue[32];
 
@@ -31,7 +32,6 @@ namespace SevenDaysSaveManipulator.GameData
             {
                 slots[i].Write(writer);
             }
-
         }
     }
 }

@@ -45,12 +45,11 @@ namespace SevenDaysSaveManipulator.GameData
                 {
                     skillDictionary[key] = skill;
                 }
-
                 else
                 {
                     skillDictionary.Add(key, skill);
                 }
             }
-        } 
+        }
     }
 }

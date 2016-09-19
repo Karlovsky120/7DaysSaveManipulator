@@ -8,6 +8,7 @@ namespace SevenDaysSaveManipulator.GameData
     {
         //CurrentVersion
         public Value<byte> currentVersion;
+
         //CurrentValue
         public Value<byte> currentValue;
 

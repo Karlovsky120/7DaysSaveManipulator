@@ -8,14 +8,19 @@ namespace SevenDaysSaveManipulator.GameData
     {
         //notSaved = 1
         public static Value<int> multiBuffPrefabAttachmentDescriptorVersion;
+
         //PrefabName
         public Value<string> prefabName;
+
         //TransformPath
         public Value<string> transformPath;
+
         //TTL
         public Value<float> TTL;
+
         //FirstPerson
         public Value<bool> firstPerson;
+
         //ThirdPerson
         public Value<bool> thirdPerson;
 

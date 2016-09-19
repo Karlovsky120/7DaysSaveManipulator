@@ -8,6 +8,7 @@ namespace SevenDaysSaveManipulator.GameData
     {
         //V
         public Value<float> unknownV;
+
         //F
         public Value<float> unknownF;
 

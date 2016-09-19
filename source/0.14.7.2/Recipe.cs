@@ -9,38 +9,51 @@ namespace SevenDaysSaveManipulator.GameData
     {
         //Q = 2
         public Value<byte> recipeVersion;
+
         //GetName()
         public Value<string> itemName;
+
         //count
         public Value<int> count;
+
         //scrapable
         public Value<bool> scrapable;
+
         //wildcardForgeCategory
         public Value<bool> wildcardForgeCategory;
+
         //wildcardCampfireCategory
         public Value<bool> wildcardCampfireCategory;
+
         //text
         public Value<string> craftingToolTypeName;
+
         //craftingTime
         public Value<float> craftingTime;
+
         //craftingArea
         public Value<string> craftingArea;
+
         //tooltip
         public Value<string> tooltip;
+
         //ingredients, might be obsolete
         public List<ItemStack> ingredients;
+
         //custom, replaces ingredients
         public List<Tuple<string, int>> nameStackSizeList;
+
         //materialBasedRecipe
         public Value<bool> materialBasedRecipe;
+
         //craftingExpGain
-        public Value<int> craftingExpGain; 
+        public Value<int> craftingExpGain;
 
         public void Read(BinaryReader reader)
         {
             recipeVersion = new Value<byte>(reader.ReadByte());
 
-            itemName = new Value<string>(reader.ReadString()); 
+            itemName = new Value<string>(reader.ReadString());
             count = new Value<int>(reader.ReadInt32());
             scrapable = new Value<bool>(reader.ReadBoolean());
             wildcardForgeCategory = new Value<bool>(reader.ReadBoolean());

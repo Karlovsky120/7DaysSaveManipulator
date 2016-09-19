@@ -9,29 +9,38 @@ namespace SevenDaysSaveManipulator.GameData
     {
         //version = 4
         public static Value<int> statModifierVersion;
-        //num 
+
+        //num
         public static Value<int> enumStatModifierClassId;
+
         //G
         public static Dictionary<EnumStatModifierClassId, Type> dictionary;
+
         //J
         public EnumStatModifierClassId enumId;
+
         //W
         public Value<int> UID;
+
         //Q
         public Value<ushort> fileId;
+
         //S
         public EnumBuffCategoryFlags buffCategoryFlags;
+
         //E
         public Value<int> stackCount;
+
         //C
         public BuffTimer buffTimer;
+
         //O
         public Stat stat;
 
         public static StatModifier Read(BinaryReader reader)
         {
             statModifierVersion = new Value<int>(reader.ReadInt32());
-            enumStatModifierClassId = new Value<int>((int) reader.ReadByte());
+            enumStatModifierClassId = new Value<int>((int)reader.ReadByte());
 
             Type type;
             dictionary.TryGetValue((EnumStatModifierClassId)enumStatModifierClassId.Get(), out type);
@@ -54,10 +63,10 @@ namespace SevenDaysSaveManipulator.GameData
         public virtual void Write(BinaryWriter writer)
         {
             writer.Write(statModifierVersion.Get());
-            writer.Write((byte) enumId);
+            writer.Write((byte)enumId);
             writer.Write(UID.Get());
             writer.Write(fileId.Get());
-            writer.Write((int) buffCategoryFlags);
+            writer.Write((int)buffCategoryFlags);
             writer.Write(stackCount.Get());
             buffTimer.Write(writer);
         }

@@ -8,10 +8,13 @@ namespace SevenDaysSaveManipulator.GameData
     {
         //pos
         public Vector3Di pos;
+
         //icon
         public Value<string> icon;
+
         //name
         public Value<string> name;
+
         //bTracked
         public Value<bool> bTracked;
 

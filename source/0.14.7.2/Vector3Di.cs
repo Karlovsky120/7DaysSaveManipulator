@@ -9,6 +9,5 @@ namespace SevenDaysSaveManipulator.GameData
         public Value<int> y;
         public Value<int> z;
         public Value<float> heading;
-    }   
-
+    }
 }

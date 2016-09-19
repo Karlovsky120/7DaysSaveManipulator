@@ -8,20 +8,28 @@ namespace SevenDaysSaveManipulator.GameData
     {
         //num = 4
         public static Value<int> playerProfileVersion;
+
         //Archetype
         public string archetype;
+
         //IsMale
         public Value<bool> isMale;
+
         //HairColor
         public Colour hairColor;
+
         //SkinColor
         public Colour skinColor;
+
         //EyeColor
         public Colour eyeColor;
+
         //HairName
         public Value<string> hairName;
+
         //BeardName
         public Value<string> beardName;
+
         //Values
         public float[] dnaValues;
 
@@ -42,7 +50,6 @@ namespace SevenDaysSaveManipulator.GameData
             {
                 playerProfile.beardName = new Value<string>(reader.ReadString());
             }
-
             else
             {
                 playerProfile.beardName = new Value<string>("");

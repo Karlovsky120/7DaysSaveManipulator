@@ -8,6 +8,7 @@ namespace SevenDaysSaveManipulator.GameData
     {
         //C
         public Value<float> elapsed;
+
         //O
         public Value<float> duration;
 

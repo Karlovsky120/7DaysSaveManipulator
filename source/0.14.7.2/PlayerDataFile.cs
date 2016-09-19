@@ -11,96 +11,136 @@ namespace SevenDaysSaveManipulator.GameData
     {
         //version = 24
         public Value<uint> saveFileVersion;
+
         //ecd
         public EntityCreationData ecd;
+
         //food
         public LiveStats food;
+
         //drink
         public LiveStats drink;
+
         //inventory
         public ItemStack[] inventory;
+
         //selectedInventorySlot
         public Value<int> selectedInventorySlot;
+
         //bag
         public ItemStack[] bag;
+
         //alreadyCraftedList
         public HashSet<string> alreadyCraftedList;
+
         //spawnPoints
         public List<Vector3Di> spawnPoints;
+
         //selectedSpawnPointKey
         public Value<long> selectedSpawnPointKey;
+
         //notSaved = true
         public Value<bool> randomBoolean;
+
         //notSaved = 0
         public Value<short> randomShort;
+
         //bLoaded
         public Value<bool> bLoaded;
+
         //lastSpawnPosition
         public Vector3Di lastSpawnPosition;
+
         //id
         public Value<int> id;
+
         //droppedBackpackPosition
         public Vector3Di droppedBackpackPosition;
+
         //playerKills
         public Value<int> playerKills;
+
         //zombieKills
         public Value<int> zombieKills;
+
         //deaths
         public Value<int> deaths;
+
         //score
         public Value<int> score;
+
         //equipment
         public Equipment equipment;
+
         //unlockedRecipeList
         public List<string> unlockedRecipeList;
+
         //notSaved = 1
         public Value<ushort> randomUShort;
+
         //markerPosition
         public Vector3Di markerPosition;
+
         //favoriteEquipment
         public Equipment favoriteEquipment;
+
         //experience
         public Value<uint> experience;
+
         //level
         public Value<int> level;
+
         //bCrouchedLocked
         public Value<bool> bCrouchedLocked;
+
         //craftingData
         public CraftingData craftingData;
+
         //favoriteRecipeList
         public List<string> favoriteRecipeList;
+
         //J
         public MemoryStream skillStream;
+
         //custom, doesn't exist
         public Skills skills;
+
         //totalItemsCrafted
         public Value<uint> totalItemsCrafted;
+
         //distanceWalked
         public Value<float> distanceWalked;
+
         //longestLife
         public Value<float> longestLife;
+
         //waypoints
         public WaypointCollection waypoints;
+
         //skillPoints
         public Value<int> skillPoints;
+
         //questJournal
         public QuestJournal questJournal;
+
         //deathUpdateTime
         public Value<int> deathUpdateTime;
+
         //currentLife
         public Value<float> currentLife;
+
         //bDead
         public Value<bool> bDead;
 
         public PlayerDataFile Clone()
-        {            
+        {
             Stream stream = new FileStream("PlayerDataFile", FileMode.Create, FileAccess.Write, FileShare.None);
 
             IFormatter formatter = new BinaryFormatter();
             formatter.Serialize(stream, this);
             stream.Close();
 
-            stream = new FileStream("PlayerDataFile", FileMode.Open, FileAccess.Read, FileShare.None);       
+            stream = new FileStream("PlayerDataFile", FileMode.Open, FileAccess.Read, FileShare.None);
             PlayerDataFile clone = (PlayerDataFile)formatter.Deserialize(stream);
             stream.Close();
 
@@ -116,7 +156,7 @@ namespace SevenDaysSaveManipulator.GameData
             if (reader.ReadChar() == 't' && reader.ReadChar() == 't' && reader.ReadChar() == 'p' &&
                 reader.ReadChar() == '\0')
             {
-                saveFileVersion = new Value<uint>((uint) reader.ReadByte());
+                saveFileVersion = new Value<uint>((uint)reader.ReadByte());
 
                 ecd = new EntityCreationData();
                 ecd.Read(reader);
@@ -126,11 +166,11 @@ namespace SevenDaysSaveManipulator.GameData
                 drink.Read(reader);
 
                 inventory = ItemStack.ReadItemStack(reader);
-                selectedInventorySlot = new Value<int>((int) reader.ReadByte());
+                selectedInventorySlot = new Value<int>((int)reader.ReadByte());
                 bag = ItemStack.ReadItemStack(reader);
 
                 //num
-                int alreadyCraftedListLength = (int) reader.ReadUInt16();
+                int alreadyCraftedListLength = (int)reader.ReadUInt16();
                 alreadyCraftedList = new HashSet<string>();
                 for (int i = 0; i < alreadyCraftedListLength; i++)
                 {
@@ -140,7 +180,7 @@ namespace SevenDaysSaveManipulator.GameData
                 //b
                 byte spawnPointsCount = reader.ReadByte();
                 spawnPoints = new List<Vector3Di>();
-                for (int j = 0; j < (int) spawnPointsCount; j++)
+                for (int j = 0; j < (int)spawnPointsCount; j++)
                 {
                     Vector3Di spawnPoint = new Vector3Di();
                     spawnPoint.x = new Value<int>(reader.ReadInt32());
@@ -177,7 +217,7 @@ namespace SevenDaysSaveManipulator.GameData
                 equipment = Equipment.Read(reader);
 
                 //num
-                int recipeCount = (int) reader.ReadUInt16();
+                int recipeCount = (int)reader.ReadUInt16();
                 unlockedRecipeList = new List<string>();
                 for (int k = 0; k < recipeCount; k++)
                 {
@@ -200,7 +240,7 @@ namespace SevenDaysSaveManipulator.GameData
                 craftingData.Read(reader);
 
                 //num
-                int favoriteRecipeListSize = (int) reader.ReadUInt16();
+                int favoriteRecipeListSize = (int)reader.ReadUInt16();
                 favoriteRecipeList = new List<string>();
                 for (int l = 0; l < favoriteRecipeListSize; l++)
                 {
@@ -208,7 +248,7 @@ namespace SevenDaysSaveManipulator.GameData
                 }
 
                 //num2
-                int memoryStreamSize = (int) reader.ReadUInt32();
+                int memoryStreamSize = (int)reader.ReadUInt32();
 
                 skills = new Skills();
                 if (memoryStreamSize > 0)
@@ -241,7 +281,6 @@ namespace SevenDaysSaveManipulator.GameData
 
                 reader.Close();
             }
-
             else
             {
                 throw new IOException("Save file corrupted!");
@@ -255,25 +294,25 @@ namespace SevenDaysSaveManipulator.GameData
             writer.Write('t');
             writer.Write('t');
             writer.Write('p');
-            writer.Write((byte) 0);
-            writer.Write((byte) saveFileVersion.Get());
+            writer.Write((byte)0);
+            writer.Write((byte)saveFileVersion.Get());
 
             ecd.Write(writer);
             food.Write(writer);
             drink.Write(writer);
 
             ItemStack.WriteItemStack(writer, inventory);
-            writer.Write((byte) selectedInventorySlot.Get());
+            writer.Write((byte)selectedInventorySlot.Get());
             ItemStack.WriteItemStack(writer, bag);
 
-            writer.Write((ushort) alreadyCraftedList.Count);
+            writer.Write((ushort)alreadyCraftedList.Count);
             HashSet<string>.Enumerator enumerator = alreadyCraftedList.GetEnumerator();
             while (enumerator.MoveNext())
             {
                 writer.Write(enumerator.Current);
             }
 
-            writer.Write((byte) spawnPoints.Count);
+            writer.Write((byte)spawnPoints.Count);
             for (int i = 0; i < spawnPoints.Count; i++)
             {
                 writer.Write(spawnPoints[i].x.Get());
@@ -285,9 +324,9 @@ namespace SevenDaysSaveManipulator.GameData
             writer.Write(randomBoolean.Get());
             writer.Write(randomShort.Get());
             writer.Write(bLoaded.Get());
-            writer.Write((int) lastSpawnPosition.x.Get());
-            writer.Write((int) lastSpawnPosition.y.Get());
-            writer.Write((int) lastSpawnPosition.z.Get());
+            writer.Write((int)lastSpawnPosition.x.Get());
+            writer.Write((int)lastSpawnPosition.y.Get());
+            writer.Write((int)lastSpawnPosition.z.Get());
             writer.Write(lastSpawnPosition.heading.Get());
             writer.Write(id.Get());
             writer.Write(droppedBackpackPosition.x.Get());
@@ -301,7 +340,7 @@ namespace SevenDaysSaveManipulator.GameData
 
             equipment.Write(writer);
 
-            writer.Write((ushort) unlockedRecipeList.Count);
+            writer.Write((ushort)unlockedRecipeList.Count);
             List<string>.Enumerator enumerator2 = unlockedRecipeList.GetEnumerator();
             while (enumerator2.MoveNext())
             {
@@ -318,7 +357,7 @@ namespace SevenDaysSaveManipulator.GameData
             writer.Write(bCrouchedLocked.Get());
             craftingData.Write(writer);
 
-            writer.Write((ushort) favoriteRecipeList.Count);
+            writer.Write((ushort)favoriteRecipeList.Count);
             List<string>.Enumerator enumerator3 = favoriteRecipeList.GetEnumerator();
             while (enumerator3.MoveNext())
             {
@@ -328,7 +367,7 @@ namespace SevenDaysSaveManipulator.GameData
             skillStream = new MemoryStream();
             skills.Write(new BinaryWriter(skillStream));
             byte[] array = skillStream.ToArray();
-            writer.Write((uint) array.Length);
+            writer.Write((uint)array.Length);
             if (array.Length > 0)
             {
                 writer.Write(array);

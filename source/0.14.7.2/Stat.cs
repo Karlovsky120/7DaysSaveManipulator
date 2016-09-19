@@ -9,20 +9,28 @@ namespace SevenDaysSaveManipulator.GameData
     {
         //num = 5
         public Value<int> statVersion;
+
         //J
         public Value<float> value;
+
         //S
         public Value<float> maxModifier;
+
         //C
         public Value<float> valueModifier;
+
         //Q
         public Value<float> baseMax;
+
         //O
         public Value<float> originalMax;
+
         //W
         public Value<float> originalValue;
+
         //G
         public Value<bool> unknownG;
+
         //V
         public List<StatModifier> statModifierList;
 

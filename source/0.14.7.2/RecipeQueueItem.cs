@@ -8,18 +8,25 @@ namespace SevenDaysSaveManipulator.GameData
     {
         //Recipe
         public Recipe recipe;
+
         //CraftingTimeLeft
         public Value<float> craftingTimeLeft;
+
         //Multiplier
         public Value<int> multiplier;
+
         //IsCrafting
         public Value<bool> isCrafting;
+
         //RepairItem
         public ItemValue repairItem;
+
         //AmountToRepair
         public Value<int> amountToRepair;
+
         //Quality
         public Value<int> quality;
+
         //StartingEntityID
         public Value<int> startingEntityId;
 
@@ -68,7 +75,7 @@ namespace SevenDaysSaveManipulator.GameData
             if (repairItemNotNull)
             {
                 repairItem.Write(writer);
-                writer.Write(amountToRepair.Get()); 
+                writer.Write(amountToRepair.Get());
             }
 
             writer.Write(quality.Get());
