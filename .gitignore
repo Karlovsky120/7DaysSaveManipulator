@@ -51,3 +51,6 @@ obj/
 *.manifest
 *.pdb
 *.vshost.exe
+*.bat
+*ICSharpCode.SharpZipLib.dll
+*.config
