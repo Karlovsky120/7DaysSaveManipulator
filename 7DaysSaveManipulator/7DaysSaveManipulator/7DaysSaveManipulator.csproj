@@ -133,15 +133,15 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if "$(SolutionName)" == "7DaysSaveManipulator" (
-mkdir $(ProjectDir)download
-mkdir $(ProjectDir)download\x64
+mkdir $(SolutionDir)download
+mkdir $(SolutionDir)download\x64
 if $(ConfigurationName) == Debug (
-mkdir $(ProjectDir)download\x64\Debug
-xcopy "$(ProjectDir)\bin\x64\Debug\$(TargetFileName)" "$(ProjectDir)download\x64\Debug" /Y
+mkdir $(SolutionDir)download\x64\Debug
+xcopy "$(ProjectDir)\bin\x64\Debug\$(TargetFileName)" "$(SolutionDir)download\x64\Debug" /Y
 )
 if $(ConfigurationName) == Release (
-mkdir $(ProjectDir)download\x64\Release
- xcopy "$(TargetDir)$(TargetFileName)" "$(ProjectDir)download\x64\Release" /Y
+mkdir $(SolutionDir)download\x64\Release
+ xcopy "$(TargetDir)$(TargetFileName)" "$(SolutionDir)download\x64\Release" /Y
 )
 )</PostBuildEvent>
   </PropertyGroup>
