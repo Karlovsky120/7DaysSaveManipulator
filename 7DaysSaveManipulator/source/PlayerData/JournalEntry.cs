@@ -41,7 +41,7 @@ namespace SevenDaysSaveManipulator.PlayerData {
             chemistryStationTip,
             tutorialTipQuest01,
             tutorialTipQuest02,
-            tutorialTipQuest03,
+            skillPointTip,
             farmingTip,
             firstAidTip,
             augmentGunsTip,
@@ -52,14 +52,26 @@ namespace SevenDaysSaveManipulator.PlayerData {
             traderTip,
             treasureMapTip,
             vendingMachineTip,
-            miningTip
+            miningTip,
+            wireToolTip,
+            generatorBankTip,
+            solarBankTip,
+            batteryBankTip,
+            paintingTip,
+            cameraTip,
+            triggerDelayDurationTip,
+            landClaimTip,
+            passthroughTriggeringTip
         }
 
         public void Read(BinaryReader reader) {
             entryType = new Value<JournalEntryTypes>((JournalEntryTypes)reader.ReadByte());
             currentFileVersion = new Value<byte>(reader.ReadByte());
-
+            
             if (entryType.Get() == JournalEntryTypes.Tip) {
+                if (currentFileVersion.Get() == 1)
+                    throw new Exception();
+
                 byte b = reader.ReadByte();
                 id = ((JournalTipEntry)b).ToString();
             }

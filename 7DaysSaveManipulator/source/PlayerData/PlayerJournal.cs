@@ -17,12 +17,19 @@ namespace SevenDaysSaveManipulator.PlayerData {
         public void Read(BinaryReader reader) {
             playerJournalVersion = new Value<byte>(reader.ReadByte());
 
+            if (playerJournalVersion.Get() > 116)
+                throw new Exception("Unknown PlayerJournal version!");
+
             journalEntries = new List<JournalEntry>();
             int journalEntryCount = reader.ReadInt16();
             for (int i = 0; i < journalEntryCount; ++i) {
+
+
                 JournalEntry journalEntry = new JournalEntry();
                 journalEntry.Read(reader);
                 journalEntries.Add(journalEntry);
+
+
             }
         }
 
