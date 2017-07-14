@@ -19,7 +19,6 @@ namespace SevenDaysSaveManipulator.PlayerData {
         public Vector3D<int> pos;
 
         public Value<int> ownerId;
-
         public Value<int> entityId;
 
         public void Read(BinaryReader reader, Value<byte> version) {
@@ -31,16 +30,15 @@ namespace SevenDaysSaveManipulator.PlayerData {
             icon = new Value<string>(reader.ReadString());
             name = new Value<string>(reader.ReadString());
             bTracked = new Value<bool>(reader.ReadBoolean());
-            
-            //Version Specific Code:
-            if (version.Get() > 1)
-            {
+
+            //Version 2
+            if (version.Get() >= 2) {
                 ownerId = new Value<int>(reader.ReadInt32());
                 entityId = new Value<int>(reader.ReadInt32());
             }
         }
 
-        public void Write(BinaryWriter writer) {
+        public void Write(BinaryWriter writer, Value<byte> version) {
 
             writer.Write(pos.x.Get());
             writer.Write(pos.y.Get());
@@ -50,8 +48,13 @@ namespace SevenDaysSaveManipulator.PlayerData {
             writer.Write(name.Get());
             writer.Write(bTracked.Get());
 
-            writer.Write(ownerId.Get());
-            writer.Write(entityId.Get());
+            //We ahve to preserve their format, if they are Version 1 save as Version 1
+            //Adding Version 2 variables to their TTP will break it.
+            //Version 2
+            if (version.Get() >= 2) {
+                writer.Write(ownerId.Get());
+                writer.Write(entityId.Get());
+            }
         }
     }
 }

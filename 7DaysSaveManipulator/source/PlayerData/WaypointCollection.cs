@@ -16,7 +16,7 @@ namespace SevenDaysSaveManipulator.PlayerData {
         public void Read(BinaryReader reader) {
             waypointCollectionVersion = new Value<byte>(reader.ReadByte());
 
-            if  (waypointCollectionVersion.Get() > 2 )
+            if (waypointCollectionVersion.Get() > 2)
                 throw new Exception("WaypointCollection Version has changed! Unknown version: " + waypointCollectionVersion);
 
             //num
@@ -33,7 +33,7 @@ namespace SevenDaysSaveManipulator.PlayerData {
             writer.Write(waypointCollectionVersion.Get());
             writer.Write((ushort)waypointList.Count);
             for (int i = 0; i < waypointList.Count; i++) {
-                waypointList[i].Write(writer);
+                waypointList[i].Write(writer, waypointCollectionVersion);
             }
         }
     }
