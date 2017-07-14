@@ -90,6 +90,12 @@ namespace SevenDaysSaveManipulator.PlayerData {
 
         public void Read(BinaryReader reader) {
             entityCreationDataVersion = new Value<byte>(reader.ReadByte());
+
+            //Adding version checks to the segments. This will make the app blowup
+            //where an unknown version has been introduced.
+            if (entityCreationDataVersion.Get() > 25) //Last known version is 25.
+                throw new Exception("Unknown EntityCreationData version! " + entityCreationDataVersion.Get());
+
             entityClass = new Value<int>(reader.ReadInt32());
 
             id = new Value<int>(reader.ReadInt32());
