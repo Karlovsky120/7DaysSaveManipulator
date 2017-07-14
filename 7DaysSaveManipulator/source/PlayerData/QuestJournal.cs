@@ -15,6 +15,9 @@ namespace SevenDaysSaveManipulator.PlayerData {
 
         public void Read(BinaryReader reader) {
             questJournalVersion = new Value<byte>(reader.ReadByte());
+
+            if (questJournalVersion.Get() > 1)
+                throw new Exception("Unknown QuestJournal version! " + questJournalVersion.Get());
             //num
             int questNumber = reader.ReadInt16();
 

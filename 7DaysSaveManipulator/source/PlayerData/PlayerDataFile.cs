@@ -181,6 +181,11 @@ namespace SevenDaysSaveManipulator.PlayerData {
                 reader.ReadChar() == '\0') {
                 saveFileVersion = new Value<uint>((uint)reader.ReadByte());
 
+                //Adding version checks to the segments. This will make the app blowup
+                //where an unknown version has been introduced.
+                if (saveFileVersion.Get() > 35) //Last known version is 35.
+                    throw new Exception("Unknown save file version! " + saveFileVersion);
+
                 ecd = new EntityCreationData();
                 ecd.Read(reader);
                 food = new LiveStats();

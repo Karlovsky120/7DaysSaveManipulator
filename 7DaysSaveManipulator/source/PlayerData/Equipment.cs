@@ -14,6 +14,10 @@ namespace SevenDaysSaveManipulator.PlayerData {
 
         public static Equipment Read(BinaryReader reader) {
             equipmentVersion = new Value<byte>(reader.ReadByte());
+            
+            //If the version changes, throw an exception, so we know what has changed.
+            if (equipmentVersion.Get() > 1)
+                throw new Exception("Unknown Equipment version! " + equipmentVersion);
 
             Equipment equipment = new Equipment();
             for (int i = 0; i < equipment.slots.Length; i++) {
